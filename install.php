@@ -1,5 +1,19 @@
 <?php
 	function wordpress_smsir_install() {
+		
+		$file = glob( plugin_dir_path( __FILE__ ) . "WordpressPluginSMSIR" );
+
+		var_dump($file);
+		exit;
+
+		$file = "../WordpressPluginSMSIR";
+		if(is_dir($file)){
+			echo ("$file is a directory");
+			exit;
+		}
+  
+		var_dump("fdsdfsdf");
+		exit;
 
 		global $wordpress_smsir_db_version, $table_prefix, $wpdb;
 		

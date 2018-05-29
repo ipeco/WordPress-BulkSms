@@ -544,7 +544,7 @@ License: GPL2
 		}
 		
 		if(!$get_group_result) {
-			add_action('admin_print_footer_scripts', 'wpsms_group_pointer');
+			add_action('admin_print_footer_scripts', 'wordpress_smsir_group_pointer');
 		}
 		
 		if(isset($_GET['action'])) {

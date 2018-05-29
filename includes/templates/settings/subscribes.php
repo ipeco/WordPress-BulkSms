@@ -16,7 +16,7 @@
 	});
 </script>
 
-<?php function wpsms_group_pointer() { ?>
+<?php function wordpress_smsir_group_pointer() { ?>
 <script type="text/javascript">
 jQuery(document).ready( function($) {
 	$('#wpsms_groups').pointer({
