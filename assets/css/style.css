@@ -11,6 +11,11 @@
     position: absolute;
     width: 100%;
 }
+#wpsms-subscribe-topBox {
+	border: 3px solid #d4d4d4;
+	padding: 10px;
+	margin: 5px;
+}
 #wpsms-subscribe .wpsms-input {
     background: none repeat scroll 0 0 #F9F9F9;
     border: 1px solid #B1B1B1;

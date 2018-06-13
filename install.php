@@ -37,6 +37,8 @@
 				name VARCHAR(100),
 				PRIMARY KEY(ID)) CHARSET=utf8
 			");
+			
+			$insert_sms_subscribe_default_group = ("INSERT INTO {$table_prefix}smsir_subscribes_group() VALUES(1,'default')");
 							
 			$create_sms_send = ("CREATE TABLE IF NOT EXISTS {$table_prefix}smsir_send(
 				ID int(10) NOT NULL auto_increment,
@@ -76,6 +78,7 @@
 				
 			dbDelta($create_sms_subscribes);
 			dbDelta($create_sms_subscribes_group);
+			dbDelta($insert_sms_subscribe_default_group);
 			dbDelta($create_sms_send);
 			dbDelta($create_sms_verification);
 			

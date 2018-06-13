@@ -14,7 +14,7 @@
 		<a href="?page=wordpress_smsir/setting&tab=features" class="nav-tab<?php if($_GET['tab'] == 'features') { echo " nav-tab-active"; } ?>"><?php _e('Features', 'wordpress_smsir'); ?></a>
 		<a href="?page=wordpress_smsir/setting&tab=notification" class="nav-tab<?php if($_GET['tab'] == 'notification') { echo " nav-tab-active"; } ?>"><?php _e('Notification', 'wordpress_smsir'); ?></a>
 	</h2>
-	
+	<p><?php _e('You Can Use Newsletter Feature From Appearance -> Widgets By Adding The Widget To Your Theme', 'wordpress_smsir'); ?></p>
 	<table class="form-table">
 		<form method="post" action="options.php" name="form">
 			<?php wp_nonce_field('update-options');?>

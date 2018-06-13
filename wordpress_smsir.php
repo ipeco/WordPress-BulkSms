@@ -13,7 +13,7 @@ License: GPL2
 	define('WORDPRESS_SMSIR_VERSION', '3.0');
 	define('WORDPRESS_SMSIR_DIR_PLUGIN', plugin_dir_url(__FILE__));
 	
-	define('WORDPRESS_SMSIR_MOBILE_REGEX', '/^[\+|\(|\)|\d|\- ]*$/');
+	define('WORDPRESS_SMSIR_MOBILE_REGEX', '/^9(0[1-3]|1[0-9]|3[0-9]|2[0-2]|9[0])-?[0-9]{3}-?[0-9]{4}$/');
 	
 	include_once dirname( __FILE__ ) . '/different-versions.php';
 	include_once dirname( __FILE__ ) . '/install.php';
@@ -270,6 +270,8 @@ License: GPL2
 		
 		global $wpdb, $table_prefix, $date;
 		
+		wp_enqueue_style('css', plugin_dir_url(__FILE__) . 'assets/css/style.css', true, '1.0');
+		
 		if(isset($_GET['group'])) {
 			$total = $wpdb->query($wpdb->prepare("SELECT * FROM `{$table_prefix}smsir_subscribes` WHERE `group_ID` REGEXP '%s'", $_GET['group']));
 		} else {
@@ -290,7 +292,9 @@ License: GPL2
 		
 		// Instantiate pagination smsect with appropriate arguments
 		$pagesPerSection = 10;
-		$options = array(25, "All");
+		$rowsperpage = 5;
+
+		$options = array($rowsperpage, "All");
 		$stylePageOff = "pageOff";
 		$stylePageOn = "pageOn";
 		$styleErrors = "paginationErrors";
@@ -356,7 +360,7 @@ License: GPL2
 		
 		if(isset($_POST['wp_subscribe_mobile']))
 			$mobile	= trim($_POST['wp_subscribe_mobile']);
-		
+				
 		if(isset($_POST['wpsms_group_name'])){
 			$group_array = $_POST['wpsms_group_name'];
 			if(is_array($group_array)){
@@ -410,18 +414,21 @@ License: GPL2
 				$check_group = $wpdb->query($wpdb->prepare("SELECT * FROM `{$table_prefix}smsir_subscribes_group` WHERE `name` = '%s'", $group));
 				
 				if(!$check_group) {
-				
-					$check = $wpdb->insert(
-						"{$table_prefix}smsir_subscribes_group", 
-						array(
-							'name'	=> $group
-						)
-					);
-					
-					if($check) {
-						echo "<div class='updated'><p>" . sprintf(__('Group <strong>%s</strong> was added successfully.', 'wordpress_smsir'), $group) . "</div></p>";
+					if(strpos($group, ',') == false){
+						
+						$check = $wpdb->insert(
+							"{$table_prefix}smsir_subscribes_group", 
+							array(
+								'name'	=> $group
+							)
+						);
+						
+						if($check) {
+							echo "<div class='updated'><p>" . sprintf(__('Group <strong>%s</strong> was added successfully.', 'wordpress_smsir'), $group) . "</div></p>";
+						}
+					} else {
+						echo "<div class='error'><p>" . __('Group name can not include comma', 'wordpress_smsir') . "</div></p>";
 					}
-					
 				} else {
 					echo "<div class='error'><p>" . __('Group name is repeated', 'wordpress_smsir') . "</div></p>";
 				}

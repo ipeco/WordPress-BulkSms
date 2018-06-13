@@ -234,11 +234,11 @@ msgstr "حمایت"
 #: D:\xampp\htdocs\wordpress\wp-content\plugins\wordpress_smsir/includes/templates/settings/export.php:23
 #: D:\xampp\htdocs\wordpress\wp-content\plugins\wordpress_smsir/includes/templates/settings/subscribes.php:42
 msgid "Export"
-msgstr "برون‌بری"
+msgstr "اکسپورت"
 
 #: D:\xampp\htdocs\wordpress\wp-content\plugins\wordpress_smsir/includes/templates/settings/export.php:7
 msgid "Export To"
-msgstr "برون‌بری به"
+msgstr "اکسپورت به"
 
 #: D:\xampp\htdocs\wordpress\wp-content\plugins\wordpress_smsir/includes/templates/settings/export.php:12
 msgid "Please select."
@@ -343,7 +343,7 @@ msgstr "ذخیره تغییرات"
 #: D:\xampp\htdocs\wordpress\wp-content\plugins\wordpress_smsir/includes/templates/settings/import.php:2
 #: D:\xampp\htdocs\wordpress\wp-content\plugins\wordpress_smsir/includes/templates/settings/subscribes.php:41
 msgid "Import"
-msgstr "درون‌ریزی"
+msgstr "ایمپورت"
 
 #: D:\xampp\htdocs\wordpress\wp-content\plugins\wordpress_smsir/includes/templates/settings/import.php:7
 #, php-format
@@ -351,8 +351,8 @@ msgid ""
 "<code>.xls</code> is the only acceptable format. Please see <a href=\"%s"
 "\">this image</a> to show a standard xls import file."
 msgstr ""
-"فرمت <code dir=\"ltr\">.xls</code> تنها فرمت قابل قبول برای درون‌ریزی است. <a "
-"href=\"%s\">این تصویر</a> را برای ساختار استاندارد درون‌ریزی مشاهده کنید."
+"فرمت <code dir=\"ltr\">.xls</code> تنها فرمت قابل قبول برای ایمپورت است. <a "
+"href=\"%s\">این تصویر</a> را برای ساختار استاندارد ایمپورت مشاهده کنید."
 
 #: D:\xampp\htdocs\wordpress\wp-content\plugins\wordpress_smsir/includes/templates/settings/import.php:11
 #: D:\xampp\htdocs\wordpress\wp-content\plugins\wordpress_smsir/includes/templates/settings/subscribes.php:23
@@ -380,6 +380,10 @@ msgstr "بله"
 #: D:\xampp\htdocs\wordpress\wp-content\plugins\wordpress_smsir/includes/templates/settings/send-sms.php:152
 msgid "No"
 msgstr "خیر"
+
+#: D:\xampp\htdocs\wordpress\wp-content\plugins\wordpress_smsir/includes/templates/settings/newsletter.php:17
+msgid "You Can Use Newsletter Feature From Appearance -> Widgets By Adding The Widget To Your Theme"
+msgstr "<b>برای استفاده از این قابلیت شما می توانید به منوی نمایش -> ابزارک ها رفته و با افزودن ابزارک اشتراک در پیامک به قالب خود از آن استفاده کنید.</b>"
 
 #: D:\xampp\htdocs\wordpress\wp-content\plugins\wordpress_smsir/includes/templates/settings/newsletter.php:22
 msgid "Register?"
@@ -637,7 +641,7 @@ msgstr "چیزی یافت نشد!"
 #: D:\xampp\htdocs\wordpress\wp-content\plugins\wordpress_smsir/includes/templates/settings/posted.php:89
 #: D:\xampp\htdocs\wordpress\wp-content\plugins\wordpress_smsir/includes/templates/settings/subscribes.php:155
 msgid "Bulk Actions"
-msgstr "کارهای دسته جمعی"
+msgstr "تغییرات گروهی"
 
 #: D:\xampp\htdocs\wordpress\wp-content\plugins\wordpress_smsir/includes/templates/settings/posted.php:90
 #: D:\xampp\htdocs\wordpress\wp-content\plugins\wordpress_smsir/includes/templates/settings/subscribes.php:156
@@ -1096,6 +1100,10 @@ msgstr "لطفا فیلد را کامل کنید"
 #, php-format
 msgid "Group <strong>%s</strong> was successfully removed."
 msgstr "گروه <strong>%s</strong> با موفقیت حذف شد."
+
+#: D:\xampp\htdocs\wordpress\wp-content\plugins\wordpress_smsir/wordpress_smsir.php:426
+msgid "Group name can not include comma"
+msgstr "نام گروه نمیتواند شامل کاراکتر کاما باشد!"
 
 #: D:\xampp\htdocs\wordpress\wp-content\plugins\wordpress_smsir/wordpress_smsir.php:447
 #, php-format
