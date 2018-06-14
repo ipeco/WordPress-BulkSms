@@ -12,8 +12,6 @@
 						<option value="0"><?php _e('Please select.', 'wordpress_smsir'); ?></option>
 						<option value="excel">Excel</option>
 						<option value="xml">XML</option>
-						<option value="csv">CSV</option>
-						<option value="tsv">TSV</option>
 					</select>
 					<p class="description"><?php _e('Select the output file type.', 'wordpress_smsir'); ?></p>
 				</td>

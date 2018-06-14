@@ -1120,8 +1120,15 @@ msgstr "تعداد <strong>%s</strong> آیتم با موفقیت اضافه ش�
 msgid "<strong>%s</strong> Mobile numbers Was repeated."
 msgstr "تعداد  <strong>%s</strong> شماره موبایل تکراری بود."
 
+#: D:\xampp\htdocs\wordpress\wp-content\plugins\wordpress_smsir/wordpress_smsir.php:602
+msgid "Only xls Format Supported"
+msgstr "تنها فرمت xls پشتیبانی می شود"
+
 msgid "Customer club contacts"
 msgstr "مخاطبین باشگاه مشتریان sms.ir"
+
+msgid "Group name <strong>%s</strong> was update successfully."
+msgstr "گروه <strong>%s</strong> با موفقیت ویرایش شد."
 
 msgid ""
 "This option sends sms to your customer club contacts that saved in sms.ir "

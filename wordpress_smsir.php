@@ -292,7 +292,7 @@ License: GPL2
 		
 		// Instantiate pagination smsect with appropriate arguments
 		$pagesPerSection = 10;
-		$rowsperpage = 5;
+		$rowsperpage = 20;
 
 		$options = array($rowsperpage, "All");
 		$stylePageOff = "pageOff";
@@ -305,7 +305,7 @@ License: GPL2
 		$start = $Pagination->getEntryStart();
 		$end = $Pagination->getEntryEnd();
 		/* Pagination */
-		
+				
 		if(isset($_POST['doaction'])) {
 			$get_IDs = implode(",", $_POST['column_ID']);
 			$check_ID = $wpdb->query($wpdb->prepare("SELECT * FROM {$table_prefix}smsir_subscribes WHERE ID IN (%s)", $get_IDs));
@@ -317,7 +317,6 @@ License: GPL2
 						foreach($_POST['column_ID'] as $items) {
 							$wpdb->delete("{$table_prefix}smsir_subscribes", array('ID' => $items) );
 						}
-						
 						echo "<div class='updated'><p>" . __('With success was removed', 'wordpress_smsir') . "</div></p>";
 					} else {
 						echo "<div class='error'><p>" . __('Not Found', 'wordpress_smsir') . "</div></p>";
@@ -541,7 +540,7 @@ License: GPL2
 					);
 					
 					if($check) {
-						echo "<div class='updated'><p>" . sprintf(__('Group name <strong>%s</strong> was update successfully.', 'wordpress_smsir'), $name) . "</div></p>";
+						echo "<div class='updated'><p>" . sprintf(__('Group name <strong>%s</strong> was update successfully.', 'wordpress_smsir'), $grp_name) . "</div></p>";
 					}
 					
 			} else {
@@ -559,42 +558,48 @@ License: GPL2
 				
 				include_once dirname( __FILE__ ) . "/includes/classes/excel-reader.class.php";
 				
-				$get_mobile = $wpdb->get_col("SELECT `mobile` FROM {$table_prefix}smsir_subscribes");
-				
 				if(isset($_POST['wps_import'])) {
+					// var_dump($_FILES['wps-import-file']);
+					// exit;
 					if(!$_FILES['wps-import-file']['error']) {
 					
-						$data = new Spreadsheet_Excel_Reader($_FILES["wps-import-file"]["tmp_name"]);
-						
-						foreach($data->sheets[0]['cells'] as $items) {
+						$filename = substr($_FILES['wps-import-file']['name'], -4);
+						$filetype = $_FILES['wps-import-file']['type'];
+						if((strtolower($filename) == '.xls') && ($filetype == 'application/vnd.ms-excel')){
+							$data = new Spreadsheet_Excel_Reader($_FILES["wps-import-file"]["tmp_name"]);
+							$get_mobile = $wpdb->get_col("SELECT `mobile` FROM {$table_prefix}smsir_subscribes");
 							
-							// Check and count duplicate items
-							if(in_array($items[2], $get_mobile)) {
-								$duplicate[] = $items[2];
-								continue;
+							foreach($data->sheets[0]['cells'] as $items) {
+								
+								// Check and count duplicate items
+								if(in_array($items[2], $get_mobile)) {
+									$duplicate[] = $items[2];
+									continue;
+								}
+								
+								// Count submited items.
+								$total_submit[] = $data->sheets[0]['cells'];
+								
+								$result = $wpdb->insert("{$table_prefix}smsir_subscribes",
+									array(
+										'date'		=>	date('Y-m-d H:i:s' ,current_time('timestamp', 0)),
+										'name'		=>	$items[1],
+										'mobile'	=>	$items[2],
+										'status'	=>	'1',
+										'group_ID'	=>	$group
+									)
+								);
+								
 							}
 							
-							// Count submited items.
-							$total_submit[] = $data->sheets[0]['cells'];
+							if($result)
+								echo "<div class='updated'><p>" . sprintf(__('<strong>%s</strong> items was successfully added.', 'wordpress_smsir'), count($total_submit)) . "</div></p>";
 							
-							$result = $wpdb->insert("{$table_prefix}smsir_subscribes",
-								array(
-									'date'		=>	date('Y-m-d H:i:s' ,current_time('timestamp', 0)),
-									'name'		=>	$items[1],
-									'mobile'	=>	$items[2],
-									'status'	=>	'1',
-									'group_ID'	=>	$group
-								)
-							);
-							
+							if($duplicate)
+								echo "<div class='error'><p>" . sprintf(__('<strong>%s</strong> Mobile numbers Was repeated.', 'wordpress_smsir'), count($duplicate)) . "</div></p>";
+						} else {
+							echo "<div class='error'><p>" . __('Only xls Format Supported', 'wordpress_smsir') . "</div></p>";
 						}
-						
-						if($result)
-							echo "<div class='updated'><p>" . sprintf(__('<strong>%s</strong> items was successfully added.', 'wordpress_smsir'), count($total_submit)) . "</div></p>";
-						
-						if($duplicate)
-							echo "<div class='error'><p>" . sprintf(__('<strong>%s</strong> Mobile numbers Was repeated.', 'wordpress_smsir'), count($duplicate)) . "</div></p>";
-							
 					} else {
 						echo "<div class='error'><p>" . __('Please complete all fields', 'wordpress_smsir') . "</div></p>";
 					}

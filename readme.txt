@@ -13,6 +13,7 @@ Tags: wordpress, sms, sms notifications, verification, sms.ir, ipe.ir
 = تغیرات در نسخه 3.0 =
 
 * تغییرات عمده در سورس افزونه
+* تغییرات و رفع خطاها در صفحه مشترکین و ابزارک سمت کاربری
 
 
 == Installation ==

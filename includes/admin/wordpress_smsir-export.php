@@ -24,14 +24,6 @@
 			case 'xml':
 				$exporter = new ExportDataExcel('browser', "{$file_name}.xml");
 			break;
-			
-			case 'csv':
-				$exporter = new ExportDataCSV('browser', "{$file_name}.csv");
-			break;
-			
-			case 'tsv':
-				$exporter = new ExportDataTSV('browser', "{$file_name}.tsv");
-			break;
 		}
 
 		$exporter->initialize();
