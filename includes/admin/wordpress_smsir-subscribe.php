@@ -21,7 +21,7 @@
 			if(!$check_mobile || $type != 'subscribe') {
 			
 				if($type == 'subscribe') {
-				
+					date_default_timezone_set('Asia/Tehran');
 					$get_current_date = date('Y-m-d H:i:s' ,current_time('timestamp',0));
 
 					if(get_option('wordpress_smsir_subscribes_activation')) {

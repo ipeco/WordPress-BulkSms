@@ -526,7 +526,7 @@ msgstr "نویسنده‌ی دیدگاه"
 
 #: D:\xampp\htdocs\wordpress\wp-content\plugins\wordpress_smsir/includes/templates/settings/notification.php:140
 msgid "Comment author email"
-msgstr "رایان‌نامه‌ی نویسنده دیدگاه"
+msgstr "ایمیل نویسنده دیدگاه"
 
 #: D:\xampp\htdocs\wordpress\wp-content\plugins\wordpress_smsir/includes/templates/settings/notification.php:141
 msgid "Comment author url"
@@ -1126,6 +1126,9 @@ msgstr "تنها فرمت xls پشتیبانی می شود"
 
 msgid "Customer club contacts"
 msgstr "مخاطبین باشگاه مشتریان sms.ir"
+
+msgid "Customer club number"
+msgstr "خط باشگاه مشتریان"
 
 msgid "Group name <strong>%s</strong> was update successfully."
 msgstr "گروه <strong>%s</strong> با موفقیت ویرایش شد."

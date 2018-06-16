@@ -23,10 +23,11 @@
 			<thead>
 				<tr>
 					<th id="cb" scope="col" class="manage-column column-cb check-column"><input type="checkbox" name="checkAll" value=""/></th>
+					<th scope="col" class="manage-column column-name" width="5%"><?php //_e('Row', 'wordpress_smsir'); ?></th>
 					<th scope="col" class="manage-column column-name" width="10%"><?php _e('Post Date', 'wordpress_smsir'); ?></th>
 					<th scope="col" class="manage-column column-name" width="10%"><?php _e('Sender', 'wordpress_smsir'); ?></th>
 					<th scope="col" class="manage-column column-name" width="50%"><?php _e('Message', 'wordpress_smsir'); ?></th>
-					<th scope="col" class="manage-column column-name" width="30%"><?php _e('Recipient', 'wordpress_smsir'); ?></th>
+					<th scope="col" class="manage-column column-name" width="25%"><?php _e('Recipient', 'wordpress_smsir'); ?></th>
 				</tr>
 			</thead>
 			
@@ -35,7 +36,9 @@
 				
 				// Instantiate pagination smsect with appropriate arguments
 				$pagesPerSection = 10;
-				$options = array(25, "All");
+				$rowsperpage = 20;
+				
+				$options = array($rowsperpage, "All");
 				$stylePageOff = "pageOff";
 				$stylePageOn = "pageOn";
 				$styleErrors = "paginationErrors";
@@ -52,18 +55,21 @@
 				$i = null;
 				if(count($get_result ) > 0)
 				{
+					$j = 1;
 					foreach($get_result as $gets)
 					{
 						$i++;
 				?>
 				<tr class="<?php echo $i % 2 == 0 ? 'alternate':'author-self'; ?>" valign="middle" id="link-2">
 					<th class="check-column" scope="row"><input type="checkbox" name="column_ID[]" value="<?php echo $gets->ID ; ?>" /></th>
+					<td class="column-name"><?php echo $j; ?></td>
 					<td class="column-name"><?php echo $gets->date; ?></td>
 					<td class="column-name"><?php echo $gets->sender; ?></td>
 					<td class="column-name"><?php echo $gets->message; ?></td>
 					<td class="column-name"><?php echo $gets->recipient; ?></td>
 				</tr>
 				<?php
+					$j = $j+1;
 					}
 				} else { ?>
 					<tr>
@@ -75,10 +81,11 @@
 			<tfoot>
 				<tr>
 					<th id="cb" scope="col" class="manage-column column-cb check-column"><input type="checkbox" name="checkAll" value=""/></th>
+					<th scope="col" class="manage-column column-name" width="5%"><?php //_e('Row', 'wordpress_smsir'); ?></th>
 					<th scope="col" class="manage-column column-name" width="10%"><?php _e('Post Date', 'wordpress_smsir'); ?></th>
 					<th scope="col" class="manage-column column-name" width="10%"><?php _e('Sender', 'wordpress_smsir'); ?></th>
 					<th scope="col" class="manage-column column-name" width="50%"><?php _e('Message', 'wordpress_smsir'); ?></th>
-					<th scope="col" class="manage-column column-name" width="30%"><?php _e('Recipient', 'wordpress_smsir'); ?></th>
+					<th scope="col" class="manage-column column-name" width="25%"><?php _e('Recipient', 'wordpress_smsir'); ?></th>
 				</tr>
 			</tfoot>
 		</table>
@@ -101,6 +108,7 @@
 		<p id="result-log">
 			<?php echo ' ' . __('Page', 'wordpress_smsir') . ' ' . $Pagination->getCurrentPage() . ' ' . __('From', 'wordpress_smsir') . ' ' . $Pagination->getTotalPages(); ?>
 		</p>
+		<select><option><?php echo $rowsperpage; ?></option></select>
 	</div>
 	<?php } ?>
 </div>

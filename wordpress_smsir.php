@@ -25,7 +25,7 @@ License: GPL2
 	__('Send a SMS via WordPress, Subscribe for sms newsletter and send verification code via mobile to users.', 'wordpress_smsir');
 
 	global $wordpress_smsir_db_version, $wpdb;
-	
+	date_default_timezone_set('Asia/Tehran');
 	$date = date('Y-m-d H:i:s' ,current_time('timestamp',0));
 
 	function wordpress_smsir_page() {
@@ -579,7 +579,7 @@ License: GPL2
 								
 								// Count submited items.
 								$total_submit[] = $data->sheets[0]['cells'];
-								
+								date_default_timezone_set('Asia/Tehran');
 								$result = $wpdb->insert("{$table_prefix}smsir_subscribes",
 									array(
 										'date'		=>	date('Y-m-d H:i:s' ,current_time('timestamp', 0)),

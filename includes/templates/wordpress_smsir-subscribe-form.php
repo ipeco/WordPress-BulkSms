@@ -94,19 +94,19 @@
 			<td><?php _e('Group', 'wordpress_smsir'); ?>:</td>
 			<td>
 				<?php foreach($get_group_result as $items): ?>
-					<input type="checkbox" value="<?php echo $items->ID; ?>" name="wpsms_grop_name" id="wpsms-groups" />
-					<label for="wpsms-groups" ><?php echo $items->name; ?></label><br>
+					<input style="cursor: pointer;" type="checkbox" value="<?php echo $items->ID; ?>" name="wpsms_grop_name" id="wpsms-groups-<?php echo $items->ID; ?>" />
+					<label style="cursor: pointer;" for="wpsms-groups-<?php echo $items->ID; ?>" ><?php echo $items->name; ?></label><br>
 				<?php endforeach; ?>
 			</td>
 		</tr>
 
 		<tr>
 			<td colspan="2">
-				<input type="radio" name="subscribe_type" id="wpsms-type-subscribe" value="subscribe" checked="checked"/>
-				<label for="wpsms-type-subscribe"><?php _e('Subscribe', 'wordpress_smsir'); ?></label>
+				<input style="cursor: pointer;" type="radio" name="subscribe_type" id="wpsms-type-subscribe" value="subscribe" checked="checked"/>
+				<label style="cursor: pointer;" for="wpsms-type-subscribe"><?php _e('Subscribe', 'wordpress_smsir'); ?></label>
 
-				<input type="radio" name="subscribe_type" id="wpsms-type-unsubscribe" value="unsubscribe"/>
-				<label for="wpsms-type-unsubscribe"><?php _e('Unsubscribe', 'wordpress_smsir'); ?></label>
+				<input style="cursor: pointer;" type="radio" name="subscribe_type" id="wpsms-type-unsubscribe" value="unsubscribe"/>
+				<label style="cursor: pointer;" for="wpsms-type-unsubscribe"><?php _e('Unsubscribe', 'wordpress_smsir'); ?></label>
 			</td>
 		</tr>
 
