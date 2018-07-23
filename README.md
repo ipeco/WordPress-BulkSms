@@ -1,13 +1,13 @@
 # WordPress-BulkSms V3.0
 
-== wordpress SMSIR ==
+== WordPress SMSIR ==
 
 * Version: 3.0
-* author: Ipe Developers (pejman kheyri)
+* Author: Ipe Developers (Pejman Kheyri)
 * Contributors: sms.ir
-* author EMAIL: pejmankheyri@gmail.com
-* author URI: http://www.sms.ir/
-* plugin URI: http://sms.ir
+* Author EMAIL: pejmankheyri@gmail.com
+* Author URI: http://www.sms.ir/
+* Plugin URI: http://sms.ir
 * Tags: wordpress, sms, sms notifications, verification, sms.ir, ipe.ir
 
 == Description ==
