@@ -96,7 +96,7 @@
 							<input type="submit" name="wp_submit" id="wp_submit" class="button button-primary button-large" value="'.__('verify', 'wordpress_smsir').'">
 						</form>
 					
-					<form method="post" action="'.$_SERVER["REQUEST_URI"].'" style="padding: 0;float: right;margin-top: -75px;margin-right: 24px;">
+					<form method="post" action="'.$_SERVER["REQUEST_URI"].'" id="wpsms_feature_resend">
 						<input type="hidden" name="user_login" value="'.$user_login.'" />
 						<input type="hidden" name="user_email" value="'.$user_email.'" />
 						<input type="hidden" name="mobile" value="'.$mobile.'" />

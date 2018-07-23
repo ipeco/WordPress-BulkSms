@@ -125,7 +125,7 @@
 					<td><?php _e('Send from', 'wordpress_smsir'); ?>:</td>
 					<td>
 					<span id="show_linenumber"><?php echo $sms->from." "; if(get_option('wordpress_smsir_stcc_number')){_e('(The number configured as a customer club number)', 'wordpress_smsir'); echo "<br>";_e('Customer Club numbers sends to just one number', 'wordpress_smsir');} ?></span>
-						<span id="wp_customer_club_contacts_desc" style="display:none;">
+						<span id="wp_customer_club_contacts_desc" class="wpsms_display_none">
 							<?php _e('This option sends sms to your customer club contacts that saved in sms.ir panel.', 'wordpress_smsir'); ?>
 						</span>
 					</td>
@@ -154,9 +154,9 @@
 								<label for="wpsms_group_name_<?php echo $items->ID; ?>" ><?php echo $items->name; ?></label><br>
 							<?php endforeach; ?>
 						</div>
-						<span id="wp_get_numbers" style="display:none;">
-							<input type="text" style="direction:ltr;" id="wp_get_number" name="wp_get_number" value="09"/>
-							<span style="font-size: 10px"><?php if(!get_option('wordpress_smsir_stcc_number')){ _e('For example', 'wordpress_smsir');  ?>: 09180000000,09180000001<?php } ?></span></span>
+						<span id="wp_get_numbers" class="wpsms_display_none">
+							<input type="text" class="wpsms_get_number" id="wp_get_number" name="wp_get_number" value="09"/>
+							<span id="wpsms_get_number_example"><?php if(!get_option('wordpress_smsir_stcc_number')){ _e('For example', 'wordpress_smsir');  ?>: 09180000000,09180000001<?php } ?></span>
 						</span>
 						
 					</td>
@@ -165,7 +165,7 @@
 				<tr>
 					<td><?php _e('SMS', 'wordpress_smsir'); ?>:</td>
 					<td>
-						<textarea name="wp_get_message" id="wp_get_message" style="width:350px; height: 200px; direction:ltr;"></textarea><br />
+						<textarea name="wp_get_message" id="wp_get_message" class="wpsms_get_message"></textarea><br />
 						<?php _e('The remaining words', 'wordpress_smsir'); ?>: <span id="wp_counter" class="number"></span>/<span id="wp_max" class="number"></span><br />
 						<span id="wp_part" class="number"></span> <?php _e('SMS', 'wordpress_smsir'); ?><br />
 						<p class="number">

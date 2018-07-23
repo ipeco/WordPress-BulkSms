@@ -10,6 +10,14 @@ Author URI: http://ipe.ir/
 Text Domain: wordpress_smsir
 License: GPL2
 */
+
+
+	if (!in_array('ob_gzhandler', ob_list_handlers())) {
+	    ob_start('ob_gzhandler');
+	} else {
+	    ob_start();
+	}
+
 	define('WORDPRESS_SMSIR_VERSION', '3.0');
 	define('WORDPRESS_SMSIR_DIR_PLUGIN', plugin_dir_url(__FILE__));
 	
@@ -272,95 +280,6 @@ License: GPL2
 		
 		wp_enqueue_style('css', plugin_dir_url(__FILE__) . 'assets/css/style.css', true, '1.0');
 		
-		if(isset($_GET['group'])) {
-			$total = $wpdb->query($wpdb->prepare("SELECT * FROM `{$table_prefix}smsir_subscribes` WHERE `group_ID` REGEXP '%s'", $_GET['group']));
-		} else {
-			$total = $wpdb->get_results("SELECT * FROM `{$table_prefix}smsir_subscribes`");
-			$total = count($total);
-		}
-		
-		if(isset($_POST['search'])) {
-			$search_query = "%" . $_POST['s'] . "%";
-			$total = $wpdb->query($wpdb->prepare("SELECT * FROM `{$table_prefix}smsir_subscribes` WHERE `name` LIKE '%s' OR `mobile` LIKE '%s'", $search_query, $search_query));
-		}
-		
-		$get_group_result = $wpdb->get_results("SELECT * FROM `{$table_prefix}smsir_subscribes_group`");
-		
-		/* Pagination */
-		wp_enqueue_style('pagination-css', plugin_dir_url(__FILE__) . 'assets/css/pagination.css', true, '1.0');
-		include_once dirname( __FILE__ ) . '/includes/classes/pagination.class.php';
-		
-		// Instantiate pagination smsect with appropriate arguments
-		$pagesPerSection = 10;
-		$rowsperpage = 5;
-
-		$options = array($rowsperpage, "All");
-		$stylePageOff = "pageOff";
-		$stylePageOn = "pageOn";
-		$styleErrors = "paginationErrors";
-		$styleSelect = "paginationSelect";
-
-		$Pagination = new Pagination($total, $pagesPerSection, $options, false, $stylePageOff, $stylePageOn, $styleErrors, $styleSelect);
-
-		$start = $Pagination->getEntryStart();
-		$end = $Pagination->getEntryEnd();
-		/* Pagination */
-		
-		if(isset($_POST['doaction'])) {
-			$get_IDs = implode(",", $_POST['column_ID']);
-			$check_ID = $wpdb->query($wpdb->prepare("SELECT * FROM {$table_prefix}smsir_subscribes WHERE ID IN (%s)", $get_IDs));
-
-			switch($_POST['action']) {
-				case 'trash':
-					if($check_ID) {
-					
-						foreach($_POST['column_ID'] as $items) {
-							$wpdb->delete("{$table_prefix}smsir_subscribes", array('ID' => $items) );
-						}
-						
-						echo "<div class='updated'><p>" . __('With success was removed', 'wordpress_smsir') . "</div></p>";
-					} else {
-						echo "<div class='error'><p>" . __('Not Found', 'wordpress_smsir') . "</div></p>";
-					}
-				break;
-				
-				case 'active':
-					if($check_ID) {
-						
-						foreach($_POST['column_ID'] as $items) {
-							$wpdb->update("{$table_prefix}smsir_subscribes", array('status' => '1'), array('ID' => $items) );
-						}
-						
-						echo "<div class='updated'><p>" . __('User is active.', 'wordpress_smsir') . "</div></p>";
-					} else {
-						echo "<div class='error'><p>" . __('Not Found', 'wordpress_smsir') . "</div></p>";
-					}
-				break;
-				
-				case 'deactive':
-					if($check_ID) {
-					
-						foreach($_POST['column_ID'] as $items) {
-							$wpdb->update("{$table_prefix}smsir_subscribes", array('status' => '0'), array('ID' => $items) );
-						}
-						
-						echo "<div class='updated'><p>" . __('User is Deactive..', 'wordpress_smsir') . "</div></p>";
-					} else {
-						echo "<div class='error'><p>" . __('Not Found', 'wordpress_smsir') . "</div></p>";
-					}
-				break;
-			}
-		}
-		
-		if(isset($_POST['wp_subscribe_name']))
-			$name = trim($_POST['wp_subscribe_name']);
-		
-		if(isset($_POST['wp_group_name']))
-			$grp_name = trim($_POST['wp_group_name']);
-		
-		if(isset($_POST['wp_subscribe_mobile']))
-			$mobile	= trim($_POST['wp_subscribe_mobile']);
-				
 		if(isset($_POST['wpsms_group_name'])){
 			$group_array = $_POST['wpsms_group_name'];
 			if(is_array($group_array)){
@@ -370,6 +289,45 @@ License: GPL2
 			}
 		}
 
+		if(isset($_POST['wpsms_add_group'])) {
+		
+			if($group) {
+			
+				$check_group = $wpdb->query($wpdb->prepare("SELECT * FROM `{$table_prefix}smsir_subscribes_group` WHERE `name` = '%s'", $group));
+				
+				if(!$check_group) {
+					if(strpos($group, ',') == false){
+						
+						$check = $wpdb->insert(
+							"{$table_prefix}smsir_subscribes_group", 
+							array(
+								'name'	=> $group
+							)
+						);
+						
+						if($check) {
+							echo "<div class='updated'><p>" . sprintf(__('Group <strong>%s</strong> was added successfully.', 'wordpress_smsir'), $group) . "</div></p>";
+						}
+					} else {
+						echo "<div class='error'><p>" . __('Group name can not include comma', 'wordpress_smsir') . "</div></p>";
+					}
+				} else {
+					echo "<div class='error'><p>" . __('Group name is repeated', 'wordpress_smsir') . "</div></p>";
+				}
+			} else {
+				echo "<div class='error'><p>" . __('Please complete field', 'wordpress_smsir') . "</div></p>";
+			}
+		}
+
+		if(isset($_POST['wp_subscribe_name']))
+			$name = trim($_POST['wp_subscribe_name']);
+		
+		if(isset($_POST['wp_group_name']))
+			$grp_name = trim($_POST['wp_group_name']);
+		
+		if(isset($_POST['wp_subscribe_mobile']))
+			$mobile	= trim($_POST['wp_subscribe_mobile']);
+				
 		if(isset($_POST['wp_add_subscribe'])) {
 		
 			if($name && $mobile && $group) {
@@ -406,37 +364,7 @@ License: GPL2
 			}
 			
 		}
-		
-		if(isset($_POST['wpsms_add_group'])) {
-		
-			if($group) {
-			
-				$check_group = $wpdb->query($wpdb->prepare("SELECT * FROM `{$table_prefix}smsir_subscribes_group` WHERE `name` = '%s'", $group));
-				
-				if(!$check_group) {
-					if(strpos($group, ',') == false){
-						
-						$check = $wpdb->insert(
-							"{$table_prefix}smsir_subscribes_group", 
-							array(
-								'name'	=> $group
-							)
-						);
-						
-						if($check) {
-							echo "<div class='updated'><p>" . sprintf(__('Group <strong>%s</strong> was added successfully.', 'wordpress_smsir'), $group) . "</div></p>";
-						}
-					} else {
-						echo "<div class='error'><p>" . __('Group name can not include comma', 'wordpress_smsir') . "</div></p>";
-					}
-				} else {
-					echo "<div class='error'><p>" . __('Group name is repeated', 'wordpress_smsir') . "</div></p>";
-				}
-			} else {
-				echo "<div class='error'><p>" . __('Please complete field', 'wordpress_smsir') . "</div></p>";
-			}
-		}
-		
+
 		if(isset($_POST['wpsms_delete_group'])) {
 			if($group) {
 				
@@ -548,6 +476,86 @@ License: GPL2
 				echo "<div class='error'><p>" . __('Please complete all fields', 'wordpress_smsir') . "</div></p>";
 			}
 			
+		}
+		
+		if(isset($_GET['group'])) {
+			$total = $wpdb->query($wpdb->prepare("SELECT * FROM `{$table_prefix}smsir_subscribes` WHERE `group_ID` REGEXP '%s'", $_GET['group']));
+		} else {
+			$total = $wpdb->get_results("SELECT * FROM `{$table_prefix}smsir_subscribes`");
+			$total = count($total);
+		}
+		
+		if(isset($_POST['search'])) {
+			$search_query = "%" . $_POST['s'] . "%";
+			$total = $wpdb->query($wpdb->prepare("SELECT * FROM `{$table_prefix}smsir_subscribes` WHERE `name` LIKE '%s' OR `mobile` LIKE '%s'", $search_query, $search_query));
+		}
+		
+		$get_group_result = $wpdb->get_results("SELECT * FROM `{$table_prefix}smsir_subscribes_group`");
+		
+		/* Pagination */
+		wp_enqueue_style('pagination-css', plugin_dir_url(__FILE__) . 'assets/css/pagination.css', true, '1.0');
+		include_once dirname( __FILE__ ) . '/includes/classes/pagination.class.php';
+		
+		// Instantiate pagination smsect with appropriate arguments
+		$pagesPerSection = 10;
+		$rowsperpage = 5;
+
+		$options = array($rowsperpage, "All");
+		$stylePageOff = "pageOff";
+		$stylePageOn = "pageOn";
+		$styleErrors = "paginationErrors";
+		$styleSelect = "paginationSelect";
+
+		$Pagination = new Pagination($total, $pagesPerSection, $options, false, $stylePageOff, $stylePageOn, $styleErrors, $styleSelect);
+
+		$start = $Pagination->getEntryStart();
+		$end = $Pagination->getEntryEnd();
+		/* Pagination */
+		
+		if(isset($_POST['doaction'])) {
+			$get_IDs = implode(",", $_POST['column_ID']);
+			$check_ID = $wpdb->query($wpdb->prepare("SELECT * FROM {$table_prefix}smsir_subscribes WHERE ID IN (%s)", $get_IDs));
+
+			switch($_POST['action']) {
+				case 'trash':
+					if($check_ID) {
+					
+						foreach($_POST['column_ID'] as $items) {
+							$wpdb->delete("{$table_prefix}smsir_subscribes", array('ID' => $items) );
+						}
+						
+						echo "<div class='updated'><p>" . __('With success was removed', 'wordpress_smsir') . "</div></p>";
+					} else {
+						echo "<div class='error'><p>" . __('Not Found', 'wordpress_smsir') . "</div></p>";
+					}
+				break;
+				
+				case 'active':
+					if($check_ID) {
+						
+						foreach($_POST['column_ID'] as $items) {
+							$wpdb->update("{$table_prefix}smsir_subscribes", array('status' => '1'), array('ID' => $items) );
+						}
+						
+						echo "<div class='updated'><p>" . __('User is active.', 'wordpress_smsir') . "</div></p>";
+					} else {
+						echo "<div class='error'><p>" . __('Not Found', 'wordpress_smsir') . "</div></p>";
+					}
+				break;
+				
+				case 'deactive':
+					if($check_ID) {
+					
+						foreach($_POST['column_ID'] as $items) {
+							$wpdb->update("{$table_prefix}smsir_subscribes", array('status' => '0'), array('ID' => $items) );
+						}
+						
+						echo "<div class='updated'><p>" . __('User is Deactive..', 'wordpress_smsir') . "</div></p>";
+					} else {
+						echo "<div class='error'><p>" . __('Not Found', 'wordpress_smsir') . "</div></p>";
+					}
+				break;
+			}
 		}
 		
 		if(!$get_group_result) {
@@ -673,4 +681,4 @@ License: GPL2
 	include_once dirname( __FILE__ ) . '/includes/admin/wordpress_smsir-newslleter.php';
 	include_once dirname( __FILE__ ) . '/includes/admin/wordpress_smsir-features.php';
 	include_once dirname( __FILE__ ) . '/includes/admin/wordpress_smsir-notifications.php';
-	
+

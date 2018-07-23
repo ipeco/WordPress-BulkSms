@@ -13,14 +13,14 @@
 			<tr>
 				<td><?php _e('Your Mobile Number', 'wordpress_smsir'); ?>:</td>
 				<td>
-					<input type="text" dir="ltr" style="width: 200px;" name="wordpress_smsir_admin_mobile" value="<?php echo get_option('wordpress_smsir_admin_mobile'); ?>"/>
+					<input type="text" dir="ltr" id="wpsms_admin_mobile" name="wordpress_smsir_admin_mobile" value="<?php echo get_option('wordpress_smsir_admin_mobile'); ?>"/>
 				</td>
 			</tr>
 			
 			<tr>
 				<td><?php _e('Your mobile country code', 'wordpress_smsir'); ?>:</td>
 				<td>
-					<input type="text" dir="ltr" style="width: 200px;" name="wordpress_smsir_mcc" value="<?php echo get_option('wordpress_smsir_mcc'); ?>"/>
+					<input type="text" dir="ltr" id="wpsms_admin_mobile" name="wordpress_smsir_mcc" value="<?php echo get_option('wordpress_smsir_mcc'); ?>"/>
 					<p class="description"><?php _e('Enter your mobile country code. (For example: Iran 09, Australia 61)', 'wordpress_smsir'); ?></p>
 				</td>
 			</tr>

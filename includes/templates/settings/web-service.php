@@ -37,7 +37,7 @@
 	<form method="post" action="options.php" name="form">
 		<table class="form-table">
 			<?php wp_nonce_field('update-options');?>
-			<tr style="display: none">
+			<tr class="wpsms_display_none">
 				<td>
 					<select name="wordpress_smsir_webservice" id="wp-webservice">
 						<option value="smsir" selected="selected">sms.ir</option>
@@ -50,7 +50,7 @@
 			<tr>
 				<th><?php _e('Username', 'wordpress_smsir'); ?>:</th>
 				<td>
-					<input type="text" dir="ltr" style="width: 200px;" name="wordpress_smsir_username" value="<?php echo get_option('wordpress_smsir_username'); ?>"/>
+					<input type="text" dir="ltr" id="wpsms_admin_mobile" name="wordpress_smsir_username" value="<?php echo get_option('wordpress_smsir_username'); ?>"/>
 					<p class="description"><?php _e('Your username in', 'wordpress_smsir'); ?>: <?php echo $sms->panel; ?></p>
 					
 					<?php if(!get_option('wordpress_smsir_username')) { ?>
@@ -62,7 +62,7 @@
 			<tr>
 				<th><?php _e('Password', 'wordpress_smsir'); ?>:</th>
 				<td>
-					<input type="password" dir="ltr" style="width: 200px;" name="wordpress_smsir_password" value="<?php echo get_option('wordpress_smsir_password'); ?>"/>
+					<input type="password" dir="ltr" id="wpsms_admin_mobile" name="wordpress_smsir_password" value="<?php echo get_option('wordpress_smsir_password'); ?>"/>
 					<p class="description"><?php _e('Your password in', 'wordpress_smsir'); ?>: <?php echo $sms->panel; ?></p>
 					
 					<?php if(!get_option('wordpress_smsir_password')) { ?>
@@ -75,7 +75,7 @@
 			<tr>
 				<th><?php _e('API/Key', 'wordpress_smsir'); ?>:</th>
 				<td>
-					<input type="text" dir="ltr" style="width: 200px;" name="wordpress_smsir_key" value="<?php echo get_option('wordpress_smsir_key'); ?>"/>
+					<input type="text" dir="ltr" id="wpsms_admin_mobile" name="wordpress_smsir_key" value="<?php echo get_option('wordpress_smsir_key'); ?>"/>
 					<p class="description"><?php _e('Your API Key in', 'wordpress_smsir'); ?>: <?php echo get_option('wordpress_smsir_webservice'); ?></p>
 				</td>
 			</tr>
@@ -84,7 +84,7 @@
 			<tr>
 				<th><?php _e('Number', 'wordpress_smsir'); ?>:</th>
 				<td>
-					<input type="text" dir="ltr" style="width: 200px;" name="wordpress_smsir_number" value="<?php echo get_option('wordpress_smsir_number'); ?>"/>
+					<input type="text" dir="ltr" id="wpsms_admin_mobile" name="wordpress_smsir_number" value="<?php echo get_option('wordpress_smsir_number'); ?>"/>
 					<p class="description"><?php _e('Your SMS sender number in', 'wordpress_smsir'); ?>: <?php echo $sms->panel; ?></p>
 					<input type="checkbox" name="wordpress_smsir_stcc_number" id="wpsms-stcc-number" <?php echo get_option('wordpress_smsir_stcc_number') ==true? 'checked="checked"':'';?>/>
 					<label for="wpsms-stcc-number"><?php _e('Activate if number is customer clubs number', 'wordpress_smsir'); ?></label>
@@ -94,7 +94,7 @@
 			<tr>
 				<th><?php _e('Status', 'wordpress_smsir'); ?>:</th>
 				<td>
-					<img src="<?php echo WORDPRESS_SMSIR_DIR_PLUGIN; ?>assets/images/1.png" alt="Active" align="absmiddle"/><span style="font-weight: bold;"><?php _e('Active', 'wordpress_smsir'); ?></span>
+					<img src="<?php echo WORDPRESS_SMSIR_DIR_PLUGIN; ?>assets/images/1.png" alt="Active" align="absmiddle"/><span id="wpsms_bold_style"><?php _e('Active', 'wordpress_smsir'); ?></span>
 				</td>
 			</tr>
 			
@@ -108,7 +108,7 @@
 			<tr>
 				<th><?php _e('Status', 'wordpress_smsir'); ?>:</th>
 				<td>
-					<img src="<?php echo WORDPRESS_SMSIR_DIR_PLUGIN; ?>assets/images/0.png" alt="Deactive" align="absmiddle"/><span style="font-weight: bold;"><?php _e('Deactive', 'wordpress_smsir'); ?></span>
+					<img src="<?php echo WORDPRESS_SMSIR_DIR_PLUGIN; ?>assets/images/0.png" alt="Deactive" align="absmiddle"/><span id="wpsms_bold_style"><?php _e('Deactive', 'wordpress_smsir'); ?></span>
 				</td>
 			</tr>
 			<?php } ?>

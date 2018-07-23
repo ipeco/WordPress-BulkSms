@@ -107,3 +107,41 @@
 #get_fmobile {
     direction: ltr;
 }
+
+.wpsms_get_number {
+    direction:ltr;
+}
+
+#wpsms_get_number_example {
+    font-size: 10px
+}
+
+.wpsms_get_message {
+    width:350px; 
+    height: 200px; 
+    direction:ltr;
+}
+
+.wpsms_display_none {
+    display: none;
+}
+
+#wpsms_admin_mobile {
+    width: 200px;
+}
+
+#wpsms_subscribe_form_box {
+    width: 25%; 
+    float: right;
+}
+
+#wpsms_bold_style {
+    font-weight: bold;
+}
+
+#wpsms_feature_resend {
+    padding: 0;
+    float: right;
+    margin-top: -75px;
+    margin-right: 24px;
+}

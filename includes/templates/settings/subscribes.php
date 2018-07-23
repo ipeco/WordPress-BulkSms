@@ -69,7 +69,7 @@ jQuery(document).ready( function($) {
 			
 			<div id="wpsms-subscribe-topBox">
 				<?php if($get_group_result) : ?>
-				<form action="" method="post" style="width: 25%; float: right;">
+				<form action="" method="post" id="wpsms_subscribe_form_box">
 					<table>
 						<tr><td colspan="2"><h3><?php _e('Add new subscribe:', 'wordpress_smsir'); ?></h4></td></tr>
 						<tr>
@@ -99,7 +99,7 @@ jQuery(document).ready( function($) {
 				</form>
 				<?php endif; ?>
 				
-				<form action="" method="post" style="width: 25%; float: right;">
+				<form action="" method="post" id="wpsms_subscribe_form_box">
 					<table>
 						<tr><td colspan="2"><h3 id="wpsms_groups"><?php _e('Add new Group:', 'wordpress_smsir'); ?></h4></td></tr>
 						<tr>
@@ -121,7 +121,7 @@ jQuery(document).ready( function($) {
 				</script>
 				
 				<?php if($get_group_result) : ?>
-				<form action="" method="post" style="width: 25%; float: right;">
+				<form action="" method="post" id="wpsms_subscribe_form_box">
 					<table>
 						<tr><td colspan="2"><h3><?php _e('Delete Group:', 'wordpress_smsir'); ?></h4></td></tr>
 						<tr>
@@ -143,7 +143,7 @@ jQuery(document).ready( function($) {
 				
 				<?php endif; ?>
 				<?php if($get_group_result) : ?>
-				<form action="" method="post" style="width: 25%; float: right;">
+				<form action="" method="post" id="wpsms_subscribe_form_box">
 					<table>
 						<tr><td colspan="2"><h3><?php _e('Edit', 'wordpress_smsir'); ?> <?php _e('Group', 'wordpress_smsir'); ?>:</h4></td></tr>
 						<tr>

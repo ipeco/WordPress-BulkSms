@@ -1110,6 +1110,11 @@ msgstr "نام گروه نمیتواند شامل کاراکتر کاما باش
 msgid "username <strong>%s</strong> was update successfully."
 msgstr "کاربر <strong>%s</strong> با موفقیت به‌روز  شد."
 
+#: D:\xampp\htdocs\wordpress\wp-content\plugins\wordpress_smsir/wordpress_smsir.php:472
+#, php-format
+msgid "Group name <strong>%s</strong> was update successfully."
+msgstr "گروه <strong>%s</strong> با موفقیت به‌روز  شد."
+
 #: D:\xampp\htdocs\wordpress\wp-content\plugins\wordpress_smsir/wordpress_smsir.php:499
 #, php-format
 msgid "<strong>%s</strong> items was successfully added."
