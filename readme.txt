@@ -1,4 +1,4 @@
-== wordpress SMSIR ==
+﻿== wordpress SMSIR ==
 Version: 3.0
 author: Ipe Developers (pejman kheyri)
 Contributors: sms.ir
@@ -17,6 +17,7 @@ Tags: wordpress, sms, sms notifications, verification, sms.ir, ipe.ir
 * کاهش تعداد کاراکتر های کد فعالسازی از 6 به 4
 * مشاهده ارسالی های باشگاه مشتریان در لیست ارسالی ها
 * بهبود ظاهر صفحه فعالسازی
+* رفع مشکل بروزرسانی صفحه در لیست مشترکین
 
 
 == Installation ==
