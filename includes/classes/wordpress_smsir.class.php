@@ -74,6 +74,7 @@ abstract class WORDPRESS_SMSIR {
 	}
 	
 	public function InsertToDB($sender, $message, $recipient) {
+		date_default_timezone_set('Asia/Tehran');
 		
 		return $this->db->insert(
 			$this->tb_prefix . "smsir_send",
@@ -87,7 +88,10 @@ abstract class WORDPRESS_SMSIR {
 
 	}
 	
-	public function InsertToDBclub($sender, $message) {
+	public function InsertToDBclub($message) {
+		date_default_timezone_set('Asia/Tehran');
+		$recipient = __('Customer club contacts', 'wordpress_smsir');
+		$sender = __('Customer club number', 'wordpress_smsir');
 		
 		return $this->db->insert(
 			$this->tb_prefix . "smsir_send",
@@ -95,7 +99,23 @@ abstract class WORDPRESS_SMSIR {
 				'date'		=>	date('Y-m-d H:i:s' ,current_time('timestamp', 0)),
 				'sender'	=>	$sender,
 				'message'	=>	$message,
-				'recipient'	=>	"Club Users"
+				'recipient'	=>	$recipient
+			)
+		);
+
+	}
+	
+	public function InsertToDBclubWithNumbers($message,$to) {
+		date_default_timezone_set('Asia/Tehran');
+		$sender = __('Customer club number', 'wordpress_smsir');
+		
+		return $this->db->insert(
+			$this->tb_prefix . "smsir_send",
+			array(
+				'date'		=>	date('Y-m-d H:i:s' ,current_time('timestamp', 0)),
+				'sender'	=>	$sender,
+				'message'	=>	$message,
+				'recipient'	=>	implode(',', $to)
 			)
 		);
 

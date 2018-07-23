@@ -36,7 +36,7 @@ jQuery(document).ready( function($) {
 
 <div class="wrap">
 	<?php if(!isset($_GET['action']) == 'edit') { ?>
-		<?php if(isset($_POST['action']) == 'group_edit') { ?>
+		<?php if((isset($_POST['action'])) && ($_POST['action'] == 'group_edit')) { ?>
 			<?php 
 				$wpsms_group_name = $_POST['wpsms_group_name'];
 				$get_result = $wpdb->get_results("SELECT * FROM {$table_prefix}smsir_subscribes_group WHERE ID = '".$wpsms_group_name."'"); 
@@ -292,10 +292,10 @@ jQuery(document).ready( function($) {
 						<tr>
 							<th id="cb" scope="col" class="manage-column column-cb check-column"><input type="checkbox" name="checkAll" value=""/></th>
 							<th scope="col" class="manage-column column-name" width="5%"><?php //_e('Row', 'wordpress_smsir'); ?></th>
-							<th scope="col" class="manage-column column-name" width="30%"><?php _e('Register date', 'wordpress_smsir'); ?></th>
 							<th scope="col" class="manage-column column-name" width="30%"><?php _e('Name', 'wordpress_smsir'); ?></th>
 							<th scope="col" class="manage-column column-name" width="20%"><?php _e('Mobile', 'wordpress_smsir'); ?></th>
 							<th scope="col" class="manage-column column-name" width="20%"><?php _e('Group', 'wordpress_smsir'); ?></th>
+							<th scope="col" class="manage-column column-name" width="30%"><?php _e('Register date', 'wordpress_smsir'); ?></th>
 							<th scope="col" class="manage-column column-name" width="10%"><?php _e('Status', 'wordpress_smsir'); ?></th>
 							<th scope="col" class="manage-column column-name" width="10%"><?php _e('Edit', 'wordpress_smsir'); ?></th>
 						</tr>

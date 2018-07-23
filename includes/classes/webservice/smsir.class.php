@@ -121,7 +121,7 @@
 					$CustomerClubInsertAndSendMessage = $this->CustomerClubInsertAndSendMessage($contacts);
 
 					if($CustomerClubInsertAndSendMessage == true){
-						$this->InsertToDB($this->from, $this->msg, $this->to);
+						$this->InsertToDBclubWithNumbers($this->msg, $this->to);
 						$this->Hook('wordpress_smsir_send', $result);
 						return true;
 					} else {
@@ -170,7 +170,7 @@
 					$array = get_object_vars($object);
 					if(is_array($array)){
 						if($array['IsSuccessful'] == true){
-							$this->InsertToDBclub($this->from, $message);
+							$this->InsertToDBclub($Messages);
 							$this->Hook('wordpress_smsir_send', $result);
 							return true;
 						} else {

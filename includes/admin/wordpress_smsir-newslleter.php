@@ -2,7 +2,7 @@
 	if ( ! defined( 'ABSPATH' ) ) exit;
 	
 	function wordpress_smsir_subscribe_meta_box() {
-		add_meta_box('subscribe-meta-box', __('Subscribe SMS', 'wordpress_smsir'), 'wp_sms_subscribe_post', 'post', 'normal', 'high');
+		add_meta_box('subscribe-meta-box', __('Subscribe SMS', 'wordpress_smsir'), 'wordpress_smsir_subscribe_post', 'post', 'normal', 'high');
 	}
 
 	if(get_option('wordpress_smsir_subscribes_send'))

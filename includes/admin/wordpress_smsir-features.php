@@ -79,14 +79,14 @@
 					$wp_submit = $_POST["wp_submit"];
 					$wp_resend = $_POST["wp_resend"];
 					
-					$random_number = mt_rand(100000, 999999);
+					$random_number = mt_rand(1000, 9999);
 					$get_current_date = time();
 
 					$verify_form = '
 					<p>
 						<form method="post" action="'.$_SERVER["REQUEST_URI"].'">
 							<label for="verification">'.__('Verification', 'wordpress_smsir').'<br />
-							<input required placeholder="'.__('123456', 'wordpress_smsir').'" type="text" name="verification" id="verification" class="input" value="" size="25" /></label>
+							<input required placeholder="'.__('1234', 'wordpress_smsir').'" type="text" name="verification" id="verification" class="input" value="" size="25" /></label>
 					</p>
 					<p class="submit">
 							<input type="hidden" name="user_login" value="'.$user_login.'" />
